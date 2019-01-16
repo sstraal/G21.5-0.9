@@ -1,0 +1,114 @@
+[sms33@icarus products_4001]$ xspec
+
+	      		      XSPEC version: 12.10.0e
+			      Build Date/Time: Wed Sep  5 13:33:46 2018
+
+XSPEC12>log STAMP
+Logging to file:xspec_Thu_Nov__8_15:41:55_2018.log
+XSPEC12>cpd  /xw
+XSPEC12>
+
+2 spectra  in use
+ 
+Spectral Data File: nu10002014001A01_sr_grp.pha  Spectrum 1
+Net count rate (cts/s) for Spectrum:1  1.582e+00 +/- 1.216e-02 (87.8 % total)
+ Assigned to Data Group 1 and Plot Group 1
+  Noticed Channels:  1-2603
+  Telescope: NuSTAR Instrument: FPMA  Channel Type: PI
+  Exposure Time: 1.299e+04 sec
+ Using fit statistic: chi
+ Using test statistic: chi
+ Using Background File                nu10002014001A01_bk.pha
+  Background Exposure Time: 1.299e+04 sec
+ Using Response (RMF) File            nu10002014001A01_sr.rmf for Source 1
+ Using Auxiliary Response (ARF) File  nu10002014001A01_sr.arf
+
+Spectral Data File: nu10002014001B01_sr_grp.pha  Spectrum 2
+Net count rate (cts/s) for Spectrum:2  1.449e+00 +/- 1.176e-02 (86.5 % total)
+ Assigned to Data Group 1 and Plot Group 2
+  Noticed Channels:  1-2606
+  Telescope: NuSTAR Instrument: FPMB  Channel Type: PI
+  Exposure Time: 1.3e+04 sec
+ Using fit statistic: chi
+ Using test statistic: chi
+ Using Background File                nu10002014001B01_bk.pha
+  Background Exposure Time: 1.3e+04 sec
+ Using Response (RMF) File            nu10002014001B01_sr.rmf for Source 1
+ Using Auxiliary Response (ARF) File  nu10002014001B01_sr.arf
+data
+XSPEC12>igno bad
+
+ignore:  2258 channels ignored from  source number 1
+ignore:  2269 channels ignored from  source number 2
+XSPEC12>setplo e
+XSPEC12>plo dat
+XSPEC12>mod phabs*pow
+
+Input parameter value, delta, min, bot, top, and max values for ...
+              1      0.001(      0.01)          0          0     100000      1e+06
+1:phabs:nH>
+              1       0.01(      0.01)         -3         -2          9         10
+2:powerlaw:PhoIndex>
+              1       0.01(      0.01)          0          0      1e+20      1e+24
+3:powerlaw:norm>
+
+========================================================================
+Model phabs<1>*powerlaw<2> Source No.: 1   Active/On
+Model Model Component  Parameter  Unit     Value
+ par  comp
+   1    1   phabs      nH         10^22    1.00000      +/-  0.0          
+   2    2   powerlaw   PhoIndex            1.00000      +/-  0.0          
+   3    2   powerlaw   norm                1.00000      +/-  0.0          
+________________________________________________________________________
+
+
+Fit statistic : Chi-Squared =   5.379107e+09 using 682 PHA bins.
+
+Test statistic : Chi-Squared =   5.379107e+09 using 682 PHA bins.
+ Reduced chi-squared =   7.922102e+06 for    679 degrees of freedom 
+ Null hypothesis probability =   0.000000e+00
+ Current data and model not fit yet.
+XSPEC12>query y
+XSPEC12>fit
+                                   Parameters
+Chi-Squared  |beta|/N    Lvl          1:nH    2:PhoIndex        3:norm
+8254.15      2860.5       -2      0.289309       1.37034    0.00355571
+7250.87      651671       -2      0.129356       1.80043    0.00852964
+6156.84      313437       -3       4.36328       2.21627     0.0234882
+1608.76      112237       -4       2.41713       1.99027     0.0278885
+699.418      74948.6      -5       3.11362       2.07118     0.0290244
+695.049      4012.56      -6       3.24593       2.08621     0.0296975
+695.047      69.7083      -7       3.24724       2.08636     0.0297131
+========================================
+ Variances and Principal Axes
+                 1        2        3  
+ 2.6809E-08| -0.0009  -0.0581   0.9983  
+ 1.1492E-01| -0.9988  -0.0482  -0.0037  
+ 1.3286E-04| -0.0483   0.9971   0.0580  
+----------------------------------------
+
+====================================
+  Covariance Matrix
+        1           2           3   
+   1.147e-01   5.524e-03   4.268e-04
+   5.524e-03   3.988e-04   2.828e-05
+   4.268e-04   -05   2.065e-06
+------------------------------------
+
+========================================================================
+Model phabs<1>*powerlaw<2> Source No.: 1   Active/On
+Model Model Component  Parameter  Unit     Value
+ par  comp
+   1    1   phabs      nH         10^22    3.24724      +/-  0.338608     
+   2    2   powerlaw   PhoIndex            2.08636      +/-  1.99705E-02  
+   3    2   powerlaw   norm                2.97131E-02  +/-  1.43697E-03  
+________________________________________________________________________
+
+
+Fit statistic : Chi-Squared =         695.05 using 682 PHA bins.
+
+Test statistic : Chi-Squared =         695.05 using 682 PHA bins.
+ Reduced chi-squared =         1.0236 for    679 degrees of freedom 
+ Null hypothesis probability =   3.263040e-01
+XSPEC12>plo ldat del
+XSPEC12>
